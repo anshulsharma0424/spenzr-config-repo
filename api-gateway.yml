@@ -1,1 +1,54 @@
+server:
+  port: 8080
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # Route for the User Service
+        - id: user-service-route
+          uri: lb://user-service # "lb" stands for load-balanced, using Eureka
+          predicates:
+            - Path=/api/v1/users/**
+          filters:
+            # Strips '/api/v1' from the path before forwarding to user-service
+            - StripPrefix=2
+
+        # Route for the Transaction Service
+        - id: transaction-service-route
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/v1/transactions/**
+          filters:
+            - StripPrefix=2
+
+        # Route for the Category Service
+        - id: category-service-route
+          uri: lb://category-service
+          predicates:
+            - Path=/api/v1/categories/**
+          filters:
+            - StripPrefix=2
+
+      # Global CORS configuration to allow our React frontend to communicate with the gateway
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000" # URL of the React app
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
