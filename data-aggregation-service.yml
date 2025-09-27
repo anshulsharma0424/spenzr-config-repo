@@ -15,9 +15,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         # We need to trust the package of the incoming DTO for deserialization
-        spring.json.trusted.packages: '*'
-        spring.json.use.type.headers: false
-        spring.json.value.default.type: com.spenzr.data_aggregation_service.dto.TransactionEventDto
+        spring.json.trusted.packages: 'com.spenzr.transaction_service.dto,com.spenzr.group_expense_service.dto'
+
 
 # Custom application properties
 app:
