@@ -1,0 +1,18 @@
+server:
+  port: 9003
+
+# --- MongoDB Configuration ---
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/spenzr_category_db
+
+# --- Keycloak JWT Configuration ---
+spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8180/realms/spenzr-realm
+
+# --- Actuator ---
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
