@@ -1,0 +1,23 @@
+server:
+  port: 9009
+
+# --- Kafka Consumer Configuration ---
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      # A group ID is required for consumers
+      group-id: ai-coach-group
+      # Read messages from the beginning of the topic if no offset is stored
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # Use JsonDeserializer to convert the message back to our DTO
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        # We need to trust the package of the incoming DTO for deserialization
+        spring.json.trusted.packages: 'com.spenzr.transactionservice.dto,com.spenzr.groupexpenseservice.dto'
+
+# Custom application properties
+app:
+  kafka:
+    transactions-topic: "transactions"
