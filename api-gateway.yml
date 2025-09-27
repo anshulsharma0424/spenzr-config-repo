@@ -48,11 +48,22 @@ spring:
             - Path=/api/v1/categories/**
           filters:
             - StripPrefix=2
-
+            
+        # Route for Reporting Service
         - id: reporting-service-route
           uri: lb://reporting-service
           predicates:
             - Path=/api/v1/reports/**
+          filters:
+            - StripPrefix=2
+
+        # Part-B (Splitwiser)
+        # Route for Event Service
+        routes:
+        - id: event-service-route
+          uri: lb://event-service
+          predicates:
+            - Path=/api/v1/events/**
           filters:
             - StripPrefix=2
 
