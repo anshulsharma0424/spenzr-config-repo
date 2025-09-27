@@ -1,7 +1,7 @@
 server:
   port: 9004
 
-# --- Database Configuration ---
+# --- All Spring properties are now under a single 'spring' key ---
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/spenzr_transaction_db
@@ -15,28 +15,24 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/spenzr-realm
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-# --- Keycloak JWT Configuration ---
-spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8180/realms/spenzr-realm
-
-# --- Actuator ---
+# --- Other top-level keys ---
 management:
   endpoints:
     web:
       exposure:
         include: "*"
 
-
-# --- Kafka Producer Configuration ---
-spring:
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      # Use JsonSerializer to send our DTO as a JSON string
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-# Custom application properties
 app:
   kafka:
     transactions-topic: "transactions"
