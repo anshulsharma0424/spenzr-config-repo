@@ -71,7 +71,7 @@ spring:
           predicates:
             - Path=/api/v1/events/{eventId}/expenses/**
           filters:
-            - StripPrefix=4
+            - StripPrefix=2
 
       # Global CORS configuration to allow our React frontend to communicate with the gateway
       globalcors:
