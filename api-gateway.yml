@@ -59,7 +59,6 @@ spring:
 
         # Part-B (Splitwiser)
         # Route for Event Service
-        routes:
         - id: event-service-route
           uri: lb://event-service
           predicates:
