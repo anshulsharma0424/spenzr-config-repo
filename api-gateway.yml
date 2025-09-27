@@ -15,6 +15,15 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
+
+      # Route for the User Service
+        - id: user-preference-service-route
+          uri: lb://user-preference-service
+          predicates:
+            - Path=/api/v1/preferences/**
+          filters:
+            - StripPrefix=2
+            
         # Route for the User Service
         - id: user-service-route
           uri: lb://user-service # "lb" stands for load-balanced, using Eureka
