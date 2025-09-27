@@ -58,18 +58,18 @@ spring:
             - StripPrefix=2
 
         # Part-B (Splitwiser)
+        - id: group-expense-service-route
+          uri: lb://group-expense-service
+          predicates:
+            - Path=/api/v1/events/{eventId}/expenses/**
+          filters:
+            - StripPrefix=2
+        
         # Route for Event Service
         - id: event-service-route
           uri: lb://event-service
           predicates:
             - Path=/api/v1/events/**
-          filters:
-            - StripPrefix=2
-
-        - id: group-expense-service-route
-          uri: lb://group-expense-service
-          predicates:
-            - Path=/api/v1/events/{eventId}/expenses/**
           filters:
             - StripPrefix=2
 
