@@ -1,11 +1,25 @@
 server:
   port: 9007
 
-# --- MongoDB Configuration ---
 spring:
+  # All spring properties are nested under this single key
   data:
     mongodb:
       uri: mongodb://localhost:27017/spenzr_groupexpense_db
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/spenzr-realm
+          
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-# --- Keycloak JWT Configuration ---
-spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8180/realms/spenzr-realm
+# Custom application properties remain at the top level
+app:
+  kafka:
+    transactions-topic: "transactions"
