@@ -66,6 +66,13 @@ spring:
           filters:
             - StripPrefix=2
 
+        - id: group-expense-service-route
+          uri: lb://group-expense-service
+          predicates:
+            - Path=/api/v1/events/**
+          filters:
+            - StripPrefix=2
+
       # Global CORS configuration to allow our React frontend to communicate with the gateway
       globalcors:
         cors-configurations:
