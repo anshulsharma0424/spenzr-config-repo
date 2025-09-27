@@ -49,6 +49,13 @@ spring:
           filters:
             - StripPrefix=2
 
+        - id: reporting-service-route
+          uri: lb://reporting-service
+          predicates:
+            - Path=/api/v1/reports/**
+          filters:
+            - StripPrefix=2
+
       # Global CORS configuration to allow our React frontend to communicate with the gateway
       globalcors:
         cors-configurations:
