@@ -80,6 +80,14 @@ spring:
           filters:
             - StripPrefix=2
 
+        # Route for AI Service
+        - id: ai-inference-service-route
+          uri: lb://ai-inference-service
+          predicates:
+            - Path=/api/v1/inference/**
+          filters:
+            - StripPrefix=2
+
       # Global CORS configuration to allow our React frontend to communicate with the gateway
       globalcors:
         cors-configurations:
