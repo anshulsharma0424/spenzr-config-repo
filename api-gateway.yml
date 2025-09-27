@@ -69,7 +69,7 @@ spring:
           uri: lb://settlement-service
           predicates:
             - Path=/api/v1/events/{eventId}/settlement/**
-            filters:
+          filters:
             - StripPrefix=2
         
         # Route for Event Service
