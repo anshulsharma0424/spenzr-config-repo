@@ -88,6 +88,13 @@ spring:
           filters:
             - StripPrefix=2
 
+        - id: suggestion-service-route
+          uri: lb://suggestion-service
+          predicates:
+            - Path=/api/v1/suggestions/**
+          filters:
+            - StripPrefix=2
+
       # Global CORS configuration to allow our React frontend to communicate with the gateway
       globalcors:
         cors-configurations:
