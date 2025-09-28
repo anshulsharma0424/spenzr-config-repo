@@ -1,2 +1,8 @@
 server:
   port: 9010
+
+# Custom properties for the Gemini API
+gemini:
+  api:
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
+    key: ${GOOGLE_API_KEY}
