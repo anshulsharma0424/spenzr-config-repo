@@ -11,7 +11,7 @@ spring:
         api-key: ${GOOGLE_API_KEY}
         
         # The Vertex AI API still requires a project and location to be specified.
-        project-id: "your-gcp-project-id" # Find this on your Google Cloud Console dashboard
+        project-id: "gen-lang-client-0145362080" # Find this on your Google Cloud Console dashboard
         location: "asia-south1"           # A region like 'us-central1' or 'asia-south1'
         
         gemini:
