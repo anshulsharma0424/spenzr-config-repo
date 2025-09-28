@@ -1,14 +1,10 @@
 server:
   port: 9010
 
-spring:
-  ai:
-    vertex:
-      ai:
-        api-key: ${GOOGLE_API_KEY}
-        project-id: "gen-lang-client-0145362080"
-        location: "asia-south1"
-        gemini:
-          chat:
-            options:
-              model: "gemini-2.0-flash"
+# Custom properties for the Gemini API
+gemini:
+  api:
+    # This is the direct URL for the Gemini 1.5 Flash model
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
+    # This reads the key from an environment variable for security
+    key: ${GOOGLE_API_KEY}
