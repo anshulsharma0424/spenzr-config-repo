@@ -1,19 +1,13 @@
 server:
   port: 9010
 
-# --- Correct Spring AI Configuration for Vertex AI with an API Key ---
 spring:
   ai:
     vertex:
       ai:
-        # This tells the starter to use your API key for authentication.
-        # It reads the value from the GOOGLE_API_KEY environment variable.
         api-key: ${GOOGLE_API_KEY}
-        
-        # The Vertex AI API still requires a project and location to be specified.
-        project-id: "gen-lang-client-0145362080" # Find this on your Google Cloud Console dashboard
-        location: "asia-south1"           # A region like 'us-central1' or 'asia-south1'
-        
+        project-id: "gen-lang-client-0145362080"
+        location: "asia-south1"
         gemini:
           chat:
             options:
