@@ -1,21 +1,14 @@
 server:
   port: 9010
 
-# --- Spring AI Configuration for Vertex AI Gemini ---
+# --- Spring AI Configuration for Google AI Gemini ---
 spring:
   ai:
-    vertex:
-      ai:
-        gemini:
-          # Your Google Cloud Project ID
-          project-id: "gen-lang-client-0096077484"
-          # The region for your project, e.g., us-central1
-          location: "asia-south1"
-          chat:
-            options:
-              model: gemini-2.5-flash
-              
-# --- Google API Key Configuration ---
-# This is now a separate top-level property
-google:
-  api-key: ${GOOGLE_API_KEY:your_api_key_is_not_set}
+    google:
+      gemini:
+        # This tells Spring to look for an environment variable named GOOGLE_API_KEY.
+        api-key: ${GOOGLE_API_KEY}
+        chat:
+          options:
+            # The model name is configurable and can be updated when new versions are released.
+            model: gemini-2.5-flash
