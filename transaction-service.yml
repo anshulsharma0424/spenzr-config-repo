@@ -39,3 +39,4 @@ management:
 app:
   kafka:
     transactions-topic: "transactions"
+    transaction-events-topic: "transaction-events"
