@@ -10,3 +10,20 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8180/realms/spenzr-realm
+
+# --- Kafka Consumer Configuration ---
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: suggestion-cleanup-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: com.spenzr.suggestionservice.dto.TransactionDeletedEvent
+        spring.json.trusted.packages: '*'
+
+app:
+  kafka:
+    transaction-events-topic: "transaction-events"
