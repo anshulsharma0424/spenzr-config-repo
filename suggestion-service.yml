@@ -18,7 +18,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.value.default.type: com.spenzr.suggestionservice.dto.TransactionDeletedEvent
+        spring.json.value.default.type: com.spenzr.suggestion_service.dto.TransactionDeletedEvent
         spring.json.trusted.packages: '*'
 
 app:
